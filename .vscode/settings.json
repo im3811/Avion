@@ -13,5 +13,9 @@
             "database": "travel_finder",
             "username": "root"
         }
+    ],
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/home/ivan/Downloads/mysql-connector-j-9.3.0/mysql-connector-j-9.3.0.jar"
     ]
 }
