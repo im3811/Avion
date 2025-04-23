@@ -169,4 +169,20 @@ public class User {
                 ", role=" + role +
                 '}';
     }
+    
+    // Helper methods
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
+    
+    public boolean isAdmin() {
+        return role == UserRole.ADMIN;
+    }
+    
+    public int getAge() {
+        if (dateOfBirth == null) {
+            return 0;
+        }
+        return (int) dateOfBirth.until(LocalDate.now()).getYears();
+    }
 }

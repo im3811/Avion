@@ -37,6 +37,7 @@ public class Booking {
         this.numGuests = numGuests;
         this.statusId = statusId;
         this.totalPrice = totalPrice;
+        this.createdAt = LocalDateTime.now();
     }
     
     // Getters and Setters
@@ -178,5 +179,35 @@ public class Booking {
                 ", numGuests=" + numGuests +
                 ", totalPrice=" + totalPrice +
                 '}';
+    }
+    
+    // Helper methods
+    public int getNights() {
+        if (checkInDate == null || checkOutDate == null) {
+            return 0;
+        }
+        return (int) checkInDate.until(checkOutDate).getDays();
+    }
+    
+    public boolean isUpcoming() {
+        if (checkInDate == null) {
+            return false;
+        }
+        return checkInDate.isAfter(LocalDate.now());
+    }
+    
+    public boolean isPast() {
+        if (checkOutDate == null) {
+            return false;
+        }
+        return checkOutDate.isBefore(LocalDate.now());
+    }
+    
+    public boolean isActive() {
+        if (checkInDate == null || checkOutDate == null) {
+            return false;
+        }
+        LocalDate today = LocalDate.now();
+        return !checkInDate.isAfter(today) && !checkOutDate.isBefore(today);
     }
 }
